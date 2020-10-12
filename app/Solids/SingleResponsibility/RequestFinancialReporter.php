@@ -20,10 +20,6 @@ class RequestFinancialReporter
      */
     public function between(Carbon $startDate, Carbon $endDate): string
     {
-//        if (!Auth::check()) {
-//            throw new \RuntimeException('Authentications Failed');
-//        }
-
         $sales = $this->queryDBForRequestProfitBetween($startDate, $endDate);
 
         return $this->format($sales);

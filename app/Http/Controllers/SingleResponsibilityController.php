@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Solids\SingleResponsibility\RequestFinancialReporter;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class SingleResponsibilityController
@@ -17,6 +18,11 @@ class SingleResponsibilityController extends Controller
      */
     public function index(RequestFinancialReporter $financialReporter): string
     {
+//        if (!Auth::check()) {
+//            throw new \RuntimeException('Authentications Failed');
+//        }
+
+
         $start = Carbon::now()->subDays(20);
         $end = Carbon::now();
         return $financialReporter->between($start, $end);
