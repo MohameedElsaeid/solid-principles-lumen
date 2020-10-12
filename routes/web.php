@@ -12,15 +12,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
 use Laravel\Lumen\Routing\Router;
 
-$router->get(
-    '/',
-    function () use ($router) {
-        $reporter = new \App\Solids\SingleResponsibility\RequestFinancialReporter();
-        $start = \Carbon\Carbon::now()->subDays(20);
-        $end = \Carbon\Carbon::now();
-        return$reporter->between($start,$end);
-    }
-);
+$router->get('/single-responsibility','SingleResponsibilityController@index');
