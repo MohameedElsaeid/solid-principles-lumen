@@ -26,23 +26,16 @@ class RequestFinancialReporter
     }
 
     /**
-     * @param Carbon $startDate
-     * @param Carbon $endDate
+     * @param Carbon                   $startDate
+     * @param Carbon                   $endDate
+     * @param FormatterOutputInterface $formatterOutput
      * @return string
      */
-    public function between(Carbon $startDate, Carbon $endDate): string
+    public function between(Carbon $startDate, Carbon $endDate, FormatterOutputInterface $formatterOutput): string
     {
         $sales = $this->requestFinancialRepo->requestProfitBetween($startDate, $endDate);
 
-        return $this->format($sales);
+        return $formatterOutput->requestProfitOutput($sales);
     }
 
-    /**
-     * @param int $sales
-     * @return string
-     */
-    private function format(int $sales): string
-    {
-        return "<h1>Profit : $sales</h1>";
-    }
 }

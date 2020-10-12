@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Solids\SingleResponsibility\HTMLOutput;
 use App\Solids\SingleResponsibility\RequestFinancialReporter;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class SingleResponsibilityController
@@ -25,6 +25,7 @@ class SingleResponsibilityController extends Controller
 
         $start = Carbon::now()->subDays(20);
         $end = Carbon::now();
-        return $financialReporter->between($start, $end);
+        $htmlOutput = new HTMLOutput();
+        return $financialReporter->between($start, $end, $htmlOutput);
     }
 }
